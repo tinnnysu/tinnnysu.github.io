@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="htstudios" />
+        <meta name="copyright" content="htstudios" />
+
+<meta name="keywords" content="Pelco, 控制协议, " />
+        <title>Pelco-D协议  · HTStudios
+</title>
+        <link href="/theme/css/slim-081711.css" rel="stylesheet" type="text/css"> 
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/theme/css/style.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/css/solarizedlight.css" media="screen">
+        <link rel="shortcut icon" href="/theme/images/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="/theme/images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="/theme/images/apple-touch-icon-144x144.png" />
+        <link rel="icon" href="/theme/images/apple-touch-icon-144x144.png" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="/"><span class=site-name>HTStudios</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="/">首页</a></li>
+                            <li ><a href="/categories.html">分类</a></li>
+                            <li ><a href="/tags.html">标签</a></li>
+                            <li ><a href="/archives.html">归档</a></li>
+                            <li><form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="搜索" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page_header span10 offset2">
+    <h1><a href="/pelco-d-procotol.html"> Pelco-D协议  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            <div class="section" id="id1">
+<h2>手册内容</h2>
+<p>本手册内容涵盖“D”协议。这个协议被用于矩阵开关系统和收发器。</p>
+</div>
+<div class="section" id="d">
+<h2>D协议</h2>
+<p>信息格式：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>字节1</td>
+<td>字节2</td>
+<td>字节3</td>
+<td>字节4</td>
+<td>字节5</td>
+<td>字节6</td>
+<td>字节7</td>
+</tr>
+<tr><td>同步字节</td>
+<td>地址</td>
+<td>命令1</td>
+<td>命令2</td>
+<td>数据1</td>
+<td>数据2</td>
+<td>校验值</td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line">以下所有数值都是16进制数字。</div>
+<div class="line">同步字节都是$FF。</div>
+<div class="line">地址是收发器的逻辑地址。</div>
+<div class="line">校验值是消息中有效信息（字节2到字节6）的8位（模256）和。</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>标准命令</h2>
+<p><strong>标准命令能够多条命令一起发送</strong></p>
+<p>命令1、命令2格式如下所示：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="18%" />
+<col width="16%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>&nbsp;</td>
+<td>位7</td>
+<td>位6</td>
+<td>位5</td>
+<td>位4</td>
+<td>位3</td>
+<td>位2</td>
+<td>位1</td>
+<td>位0</td>
+</tr>
+<tr><td>命令1</td>
+<td>触发</td>
+<td>保留</td>
+<td>保留</td>
+<td>自动/手动扫描</td>
+<td>摄像机开/关</td>
+<td>光圈关</td>
+<td>光圈开</td>
+<td>聚焦近</td>
+</tr>
+<tr><td>命令2</td>
+<td>聚焦远</td>
+<td>宽视场</td>
+<td>窄视场</td>
+<td>向下</td>
+<td>向上</td>
+<td>向左</td>
+<td>向右</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line">触发位（命令1位7）决定位4、位3的意义，如果触发位使能并且位4、位3全部使能，命令将是启动自动扫描并打开摄像机。如果触发位关闭并且位4、位3全部使能，命令将是启动手动扫描并且关闭摄像机。当然，如果位4、位3全部关闭命令将是不采取任何动作。</div>
+<div class="line">保留位（位6、位5）应当被设成0。</div>
+<div class="line">字节5包含水平速度。水平速度值在$00（停止）和$3F（高速）之间，$FF表示最快速度，最快速度是指设备所能达到的速度上限。$FF单独考虑是因为在高速和最快速度之间往往不是一个平滑的步进。这就是说，通常从一个速度等级过渡到另一个速度等级的过程是平滑的，因而当切换进出最快速度时需要提供一个的平滑过渡过程。</div>
+<div class="line">字节6包含俯仰速度。俯仰速度值在$00（停止）和$3F（高速）之间。</div>
+<div class="line">字节7是校验值，校验值是除了同步字节之外字节以256为模的和。</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>扩展命令</h2>
+<p><strong>扩展命令只能单条发送</strong></p>
+<p>除了以上所描述的“PZT”命令外，还有一些其他命令允许你控制设备的一些高级特性。</p>
+<p>扩展命令：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="39%" />
+<col width="11%" />
+<col width="11%" />
+<col width="21%" />
+<col width="18%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>命令</td>
+<td>字3</td>
+<td>字4</td>
+<td>字5</td>
+<td>字6</td>
+</tr>
+<tr><td>设置预置位</td>
+<td>00</td>
+<td>03</td>
+<td>00</td>
+<td>01到20</td>
+</tr>
+<tr><td>清除预置位</td>
+<td>00</td>
+<td>05</td>
+<td>00</td>
+<td>01到20</td>
+</tr>
+<tr><td>调用预置位</td>
+<td>00</td>
+<td>07</td>
+<td>00</td>
+<td>01到20</td>
+</tr>
+<tr><td>反转</td>
+<td>00</td>
+<td>07</td>
+<td>00</td>
+<td>21</td>
+</tr>
+<tr><td>调用水平0位</td>
+<td>00</td>
+<td>07</td>
+<td>00</td>
+<td>22</td>
+</tr>
+<tr><td>设置辅助位</td>
+<td>00</td>
+<td>09</td>
+<td>00</td>
+<td>01到08</td>
+</tr>
+<tr><td>清除辅助位</td>
+<td>00</td>
+<td>0B</td>
+<td>00</td>
+<td>01到08</td>
+</tr>
+<tr><td>远程复位</td>
+<td>00</td>
+<td>0F</td>
+<td>00</td>
+<td>00</td>
+</tr>
+<tr><td>设置区域起始</td>
+<td>00</td>
+<td>11</td>
+<td>00</td>
+<td>01到08</td>
+</tr>
+<tr><td>设置区域结束</td>
+<td>00</td>
+<td>13</td>
+<td>00</td>
+<td>01到08</td>
+</tr>
+<tr><td>显示字符</td>
+<td>00</td>
+<td>15</td>
+<td>X位置00到28</td>
+<td>ASCII值</td>
+</tr>
+<tr><td>清除屏幕</td>
+<td>00</td>
+<td>17</td>
+<td>00</td>
+<td>00</td>
+</tr>
+<tr><td>报警确认</td>
+<td>00</td>
+<td>19</td>
+<td>00</td>
+<td>报警号</td>
+</tr>
+<tr><td>区域扫描打开</td>
+<td>00</td>
+<td>1B</td>
+<td>00</td>
+<td>00</td>
+</tr>
+<tr><td>区域扫描关闭</td>
+<td>00</td>
+<td>1D</td>
+<td>00</td>
+<td>00</td>
+</tr>
+<tr><td>设置模式起始</td>
+<td>00</td>
+<td>1F</td>
+<td>00</td>
+<td>00</td>
+</tr>
+<tr><td>设置模式结束</td>
+<td>00</td>
+<td>21</td>
+<td>00</td>
+<td>00</td>
+</tr>
+<tr><td>运行模式</td>
+<td>00</td>
+<td>23</td>
+<td>00</td>
+<td>00</td>
+</tr>
+<tr><td>设置变倍速度</td>
+<td>00</td>
+<td>25</td>
+<td>00</td>
+<td>00到03</td>
+</tr>
+<tr><td>设置聚焦速度</td>
+<td>00</td>
+<td>27</td>
+<td>00</td>
+<td>00到03</td>
+</tr>
+<tr><td>复位摄像机</td>
+<td>00</td>
+<td>29</td>
+<td>00</td>
+<td>00</td>
+</tr>
+<tr><td>自动聚焦自动/打开/关闭</td>
+<td>00</td>
+<td>2B</td>
+<td>00</td>
+<td>00-02</td>
+</tr>
+<tr><td>自动光圈自动/打开/关闭</td>
+<td>00</td>
+<td>2D</td>
+<td>00</td>
+<td>00-02</td>
+</tr>
+<tr><td>增益自动/打开/关闭</td>
+<td>00</td>
+<td>2F</td>
+<td>00</td>
+<td>00-02</td>
+</tr>
+<tr><td>背光补偿打开/关闭</td>
+<td>00</td>
+<td>31</td>
+<td>00</td>
+<td>01-02</td>
+</tr>
+<tr><td>自动白平衡打开/关闭</td>
+<td>00</td>
+<td>33</td>
+<td>00</td>
+<td>01-02</td>
+</tr>
+<tr><td>启用设备相位延迟模式</td>
+<td>00</td>
+<td>35</td>
+<td>00</td>
+<td>00</td>
+</tr>
+<tr><td>设置快门速度</td>
+<td>00</td>
+<td>37</td>
+<td>无限制</td>
+<td>无限制</td>
+</tr>
+<tr><td>调整线锁定相位延迟</td>
+<td>00-01</td>
+<td>39</td>
+<td>无限制</td>
+<td>无限制</td>
+</tr>
+<tr><td>调整白平衡（R-B）</td>
+<td>00-01</td>
+<td>3B</td>
+<td>无限制</td>
+<td>无限制</td>
+</tr>
+<tr><td>调整白平衡（M-G）</td>
+<td>00-01</td>
+<td>3D</td>
+<td>无限制</td>
+<td>无限制</td>
+</tr>
+<tr><td>调整增益</td>
+<td>00-01</td>
+<td>3F</td>
+<td>无限制</td>
+<td>无限制</td>
+</tr>
+<tr><td>调整自动光圈等级</td>
+<td>00-01</td>
+<td>41</td>
+<td>无限制</td>
+<td>无限制</td>
+</tr>
+<tr><td>调整自动光圈峰值</td>
+<td>00-01</td>
+<td>43</td>
+<td>无限制</td>
+<td>无限制</td>
+</tr>
+<tr><td>查询</td>
+<td>00</td>
+<td>45</td>
+<td>无限制</td>
+<td>无限制</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意：查询命令只能用在点对点应用上，一个被查询的设备会把响应信息发送到其他所有地址。因此，如果一个以上的设备发送该命令，将会有多个设备在同一时间传输信息</strong></p>
+<p>命令响应分为4部分，第一部分是同步字节（FF），第二部分是接收器地址，第三部分是告警信息，第四部分是校验值。</p>
+</div>
+<div class="section" id="id4">
+<h2>创建标签</h2>
+<p>很多设备都有在视频上显示标签的能力。标签一般用来确认预置位或即将被扫描的区域。有一种方法用来
+建立标签与预置位活区域的关联。第一步，使用 <tt class="docutils literal">显示字符</tt> 命令发送标签到接收器，然后当字符显示
+完毕后设置预置位。这样就能够将标签与预置位关联。</p>
+</div>
+<div class="section" id="id5">
+<h2>消息示例</h2>
+<p>(所有信息值都是16进制的)</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="61%" />
+<col width="39%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>消息</td>
+<td>格式</td>
+</tr>
+<tr><td>接收器1，摄像机开</td>
+<td>FF, 01, 88, 00, 00, 00, 89</td>
+</tr>
+<tr><td>接收器1，摄像机关</td>
+<td>FF, 01, 08, 00, 00, 00, 09</td>
+</tr>
+<tr><td>接收器2，向左，1/2速度</td>
+<td>FF, 02, 00, 04, 00, 20, 02</td>
+</tr>
+<tr><td>接收器2，停止</td>
+<td>FF, 02, 00, 00, 00, 00, 02</td>
+</tr>
+<tr><td>接收器10，摄像机开，聚焦远，向下，最高速度</td>
+<td>FF, 0A, 88, 90, 00, 40, 62</td>
+</tr>
+</tbody>
+</table>
+<p>原文最后一个命令示例可能有错误!!!</p>
+<div class="line-block">
+<div class="line">0A           00001010</div>
+<div class="line">88           10001000</div>
+<div class="line">和           10010010  92</div>
+<div class="line">90           10010000</div>
+<div class="line">和           00100010  22 （以256为模，舍去高位）</div>
+<div class="line">00           00000000</div>
+<div class="line">和           00100010  22</div>
+<div class="line">40           01000000</div>
+<div class="line">和           01100010  62 （最终校验和）</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>响应信息</h2>
+<p>接收“D”协议的设备可能会生成一个响应信息</p>
+<p>响应信息的通常格式：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="18%" />
+<col width="29%" />
+<col width="24%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>同步字节</td>
+<td>地址</td>
+<td>告警信息</td>
+<td>校验值</td>
+</tr>
+</tbody>
+</table>
+<p>告警信息为1个字节，格式如下：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>位7</td>
+<td>位6</td>
+<td>位5</td>
+<td>位4</td>
+<td>位3</td>
+<td>位2</td>
+<td>位1</td>
+<td>位0</td>
+</tr>
+<tr><td>告警8</td>
+<td>告警7</td>
+<td>告警6</td>
+<td>告警5</td>
+<td>告警4</td>
+<td>告警3</td>
+<td>告警2</td>
+<td>告警1</td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line">如果相应位打开（1）告警信息激活，如果相应位关闭（0）告警信息未激活</div>
+<div class="line">校验值是所接收命令的校验值与告警信息的和</div>
+</div>
+<p>查询命令的响应信息：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="14%" />
+<col width="45%" />
+<col width="18%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>同步字节</td>
+<td>地址</td>
+<td>部件序号（15字节）</td>
+<td>校验值</td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line">地址是发送查询命令设备的地址</div>
+<div class="line">部件序号是ASCII字符串，包含被查询设备的程序序号</div>
+<div class="line">校验值是相应查询命令校验值，响应信息地址，15字节部件序号的8位和</div>
+</div>
+</div>
+
+            <aside>
+            <hr/>
+            <nav>
+            <ul class="articles_timeline">
+ 
+                <li class="previous_article">« <a href="/hellowrold.html" title="上一篇: 测试">测试</a></li>
+ 
+                <li class="next_article"><a href="/pelco-p-protocol.html" title="下一篇: Pelco-P协议">Pelco-P协议</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+ 
+            <h4>发布时间</h4>
+            <time pubdate="pubdate" datetime="2015-01-04T15:30:00+08:00">Jan 4, 2015</time>
+ 
+            <h4>更新时间</h4>
+            <div class="last_updated">2015-01-06 14:40:00+08:00</div>
+            <h4>分类</h4>
+            <a class="category-link" href="/categories.html#控制协议-ref">控制协议</a> 
+            <h4>标签</h4>
+            <ul class="list-of-tags tags-in-article"> 
+                <li><a href="/tags.html#Pelco-ref">Pelco
+                    <span>2</span>
+</a></li>
+            </ul>
+
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    </body>
+</html>

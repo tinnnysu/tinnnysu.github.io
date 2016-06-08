@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="htstudios" />
+        <meta name="copyright" content="htstudios" />
+
+<meta name="keywords" content="Pelco-P, Pelco, 控制协议, " />
+        <title>Pelco-P协议  · HTStudios
+</title>
+        <link href="/theme/css/slim-081711.css" rel="stylesheet" type="text/css"> 
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/theme/css/style.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/css/solarizedlight.css" media="screen">
+        <link rel="shortcut icon" href="/theme/images/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="/theme/images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="/theme/images/apple-touch-icon-144x144.png" />
+        <link rel="icon" href="/theme/images/apple-touch-icon-144x144.png" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="/"><span class=site-name>HTStudios</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="/">首页</a></li>
+                            <li ><a href="/categories.html">分类</a></li>
+                            <li ><a href="/tags.html">标签</a></li>
+                            <li ><a href="/archives.html">归档</a></li>
+                            <li><form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="搜索" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page_header span10 offset2">
+    <h1><a href="/pelco-p-protocol.html"> Pelco-P协议  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            <div class="section" id="id1">
+<h2>手册内容</h2>
+<p>本手册介绍Pelco-P协议，本协议采用无奇偶校验，一个起始位，一个结束位。推荐波特率为
+4800（4800，8，N，1，1）。</p>
+</div>
+<div class="section" id="id2">
+<h2>消息格式</h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="30%" />
+<col width="52%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>字节</td>
+<td>数据值</td>
+<td>功能</td>
+</tr>
+<tr><td>1</td>
+<td>$A0</td>
+<td>STX（开始传输）</td>
+</tr>
+<tr><td>2</td>
+<td>$00到$1F</td>
+<td>地址</td>
+</tr>
+<tr><td>3</td>
+<td>数据字1</td>
+<td>参见下文</td>
+</tr>
+<tr><td>4</td>
+<td>数据字2</td>
+<td>参见下文</td>
+</tr>
+<tr><td>5</td>
+<td>数据字3</td>
+<td>参见下文</td>
+</tr>
+<tr><td>6</td>
+<td>数据字4</td>
+<td>参见下文</td>
+</tr>
+<tr><td>7</td>
+<td>$AF</td>
+<td>ETX（结束传输）</td>
+</tr>
+<tr><td>8</td>
+<td>$00到$FF</td>
+<td>校验值</td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line">字节1总是$A0</div>
+<div class="line">字节2是接收器地址，由接收器编码开关编码</div>
+<div class="line">字节3-6功能参见下文</div>
+<div class="line">字节7总是$AF</div>
+<div class="line">字节8是字节1-7的异或和（XOR）</div>
+</div>
+<p>本协议是以0开始的，所以在本协议中第一个接收器的地址是$00,代表地址1</p>
+<p>数据字主要分为两个部分。第一部分是直水平俯仰命令，各个功能如下定义：</p>
+</div>
+<div class="section" id="id3">
+<h2>水平俯仰命令</h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="6%" />
+<col width="11%" />
+<col width="13%" />
+<col width="13%" />
+<col width="11%" />
+<col width="11%" />
+<col width="9%" />
+<col width="15%" />
+</colgroup>
+<tbody valign="top">
+<tr><td rowspan="2">&nbsp;</td>
+<td colspan="8">数据位</td>
+</tr>
+<tr><td>7</td>
+<td>6</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr><td>数据字1</td>
+<td>0</td>
+<td>摄像机开</td>
+<td>自动扫描开</td>
+<td>摄像机开关</td>
+<td>光圈关闭</td>
+<td>光圈打开</td>
+<td>聚焦近</td>
+<td>聚焦远</td>
+</tr>
+<tr><td>数据字2</td>
+<td>0</td>
+<td>变倍近</td>
+<td>变倍远</td>
+<td>垂直上</td>
+<td>垂直下</td>
+<td>水平左</td>
+<td>水平右</td>
+<td>0(命令类别)</td>
+</tr>
+<tr><td>数据字3</td>
+<td colspan="8">水平速度$00到$3F，$40代表最高速度</td>
+</tr>
+<tr><td>数据字4</td>
+<td colspan="8">俯仰速度$00到$3F</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id4">
+<h2>扩展命令</h2>
+<p>扩展命令集使用数据字2的位0（1），格式如下表所示：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="18%" />
+<col width="18%" />
+<col width="18%" />
+<col width="18%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>命令</td>
+<td>数据字1</td>
+<td>数据字2</td>
+<td>数据字3</td>
+<td>数据字4</td>
+</tr>
+<tr><td>设置预置位XX</td>
+<td>00</td>
+<td>03</td>
+<td>00</td>
+<td>01到FF</td>
+</tr>
+<tr><td>清除预置位XX</td>
+<td>00</td>
+<td>05</td>
+<td>00</td>
+<td>01到FF</td>
+</tr>
+<tr><td>调用预置位XX</td>
+<td>00</td>
+<td>07</td>
+<td>00</td>
+<td>01到FF</td>
+</tr>
+<tr><td>反转(180度)</td>
+<td>00</td>
+<td>07</td>
+<td>00</td>
+<td>21</td>
+</tr>
+<tr><td>0位</td>
+<td>00</td>
+<td>07</td>
+<td>00</td>
+<td>22</td>
+</tr>
+<tr><td>自动扫描</td>
+<td>00</td>
+<td>09</td>
+<td>00</td>
+<td>00</td>
+</tr>
+<tr><td>自动扫描停止</td>
+<td>00</td>
+<td>0B</td>
+<td>00</td>
+<td>00</td>
+</tr>
+<tr><td>远程复位</td>
+<td>00</td>
+<td>0F</td>
+<td>00</td>
+<td>00</td>
+</tr>
+<tr><td>区域开始</td>
+<td>00</td>
+<td>11</td>
+<td>00</td>
+<td>01到08</td>
+</tr>
+<tr><td>区域结束</td>
+<td>00</td>
+<td>13</td>
+<td>00</td>
+<td>01到08</td>
+</tr>
+<tr><td>显示字符</td>
+<td>00</td>
+<td>15</td>
+<td>00到28</td>
+<td>00到7F</td>
+</tr>
+<tr><td>清空屏幕</td>
+<td>00</td>
+<td>17</td>
+<td>00</td>
+<td>00</td>
+</tr>
+<tr><td>告警确认</td>
+<td>00</td>
+<td>19</td>
+<td>00</td>
+<td>01到08</td>
+</tr>
+<tr><td>区域扫描打开</td>
+<td>00</td>
+<td>1B</td>
+<td>00</td>
+<td>00</td>
+</tr>
+<tr><td>区域扫描停止</td>
+<td>00</td>
+<td>1D</td>
+<td>00</td>
+<td>00</td>
+</tr>
+<tr><td>模式打开</td>
+<td>00</td>
+<td>1F</td>
+<td>00</td>
+<td>00</td>
+</tr>
+<tr><td>模式关闭</td>
+<td>00</td>
+<td>21</td>
+<td>00</td>
+<td>00</td>
+</tr>
+<tr><td>运行模式</td>
+<td>00</td>
+<td>23</td>
+<td>00</td>
+<td>00</td>
+</tr>
+<tr><td>变倍镜头速度</td>
+<td>00</td>
+<td>25</td>
+<td>00</td>
+<td>00到03</td>
+</tr>
+<tr><td>聚焦镜头速度</td>
+<td>00</td>
+<td>27</td>
+<td>00</td>
+<td>00到03</td>
+</tr>
+</tbody>
+</table>
+<p>接收器会响应一个ACK信息。</p>
+<p>为了适应新系统和兼容旧系统，通过使用一些未使用的预置位功能添加了一些新功能。
+如下表所示:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>预置位号</td>
+<td>功能</td>
+</tr>
+<tr><td>99</td>
+<td>开始自动扫描</td>
+</tr>
+<tr><td>98</td>
+<td>开始帧扫描</td>
+</tr>
+<tr><td>97</td>
+<td>开始随机扫描</td>
+</tr>
+<tr><td>96</td>
+<td>停止扫描</td>
+</tr>
+<tr><td>95</td>
+<td>进入菜单模式</td>
+</tr>
+<tr><td>94</td>
+<td>远程复位</td>
+</tr>
+<tr><td>93</td>
+<td>设置右向停止限定</td>
+</tr>
+<tr><td>92</td>
+<td>设置左向停止限定</td>
+</tr>
+<tr><td>34</td>
+<td>0位</td>
+</tr>
+<tr><td>33</td>
+<td>反转</td>
+</tr>
+</tbody>
+</table>
+<p>示例：</p>
+<p>设置地址为1的接收器32号预置位：</p>
+<p>A0 00 00 03 00 20 AF 2C</p>
+<p>驱动地址为2的接收器1/2速度左转:</p>
+<p>A0 01 00 04 00 1F AF 15</p>
+</div>
+
+            <aside>
+            <hr/>
+            <nav>
+            <ul class="articles_timeline">
+ 
+                <li class="previous_article">« <a href="/pelco-d-procotol.html" title="上一篇: Pelco-D协议">Pelco-D协议</a></li>
+ 
+                <li class="next_article"><a href="/freebsd-pptp.html" title="下一篇: FreeBSD10.1 搭建PPTP服务器">FreeBSD10.1 搭建PPTP服务器</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+ 
+            <h4>发布时间</h4>
+            <time pubdate="pubdate" datetime="2015-01-07T14:28:00+08:00">Jan 7, 2015</time>
+ 
+            <h4>更新时间</h4>
+            <div class="last_updated">2015-01-09 11:13:00+08:00</div>
+            <h4>分类</h4>
+            <a class="category-link" href="/categories.html#控制协议-ref">控制协议</a> 
+            <h4>标签</h4>
+            <ul class="list-of-tags tags-in-article"> 
+                <li><a href="/tags.html#Pelco-ref">Pelco
+                    <span>2</span>
+</a></li>
+                <li><a href="/tags.html#Pelco-P-ref">Pelco-P
+                    <span>1</span>
+</a></li>
+            </ul>
+
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="htstudios" />
+        <meta name="copyright" content="htstudios" />
+
+<meta name="keywords" content="STM32, Keil, STM32, " />
+        <title>STM32 Keil笔记  · HTStudios
+</title>
+        <link href="/theme/css/slim-081711.css" rel="stylesheet" type="text/css"> 
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/theme/css/style.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/css/solarizedlight.css" media="screen">
+        <link rel="shortcut icon" href="/theme/images/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="/theme/images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="/theme/images/apple-touch-icon-144x144.png" />
+        <link rel="icon" href="/theme/images/apple-touch-icon-144x144.png" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="/"><span class=site-name>HTStudios</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="/">首页</a></li>
+                            <li ><a href="/categories.html">分类</a></li>
+                            <li ><a href="/tags.html">标签</a></li>
+                            <li ><a href="/archives.html">归档</a></li>
+                            <li><form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="搜索" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page_header span10 offset2">
+    <h1><a href="/stm32-keil.html"> STM32 Keil笔记  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            <div class="section" id="id1">
+<h2>头文件</h2>
+<p>Keil头文件组织方法让我一头雾水。ST提供CMSIS（Cortex-M Software Interface Standard）和标准外设驱动（STM32F10x_StdPeriph_Driver）。默认库文件是不能修改的，当你要使用这些功能或选择使用一款单片机型号时，你必须定义一些符号，例如定义 <cite>TM32F10X_MD</cite> 为使用的中密度STM32F10X设备、定义 <cite>USE_STDPERIPH_DRIVER</cite> 为使用标准外设驱动。</p>
+<p>在使用标准外设驱动时，你必须编写 <strong>stm32f10x_conf.h</strong> 头文件来决定使用哪
+些标准驱动，否则可能会调用Keil自带头文件导致编译失败。这个文件在ST官方
+示例中存在，可以直接拷贝过来使用（别忘记修改工程头文件目录）。</p>
+</div>
+<div class="section" id="id2">
+<h2>编译器</h2>
+</div>
+<div class="section" id="id3">
+<h2>调试方法</h2>
+<p>STM32支持多种启动方式，如果是擦写Flash，你必须重启测试程序，也可以使用Debug
+直接使用Jlink（其他调试器也可能支持）在线调试。</p>
+</div>
+
+            <aside>
+            <hr/>
+            <nav>
+            <ul class="articles_timeline">
+ 
+                <li class="previous_article">« <a href="/freebsd-pptp.html" title="上一篇: FreeBSD10.1 搭建PPTP服务器">FreeBSD10.1 搭建PPTP服务器</a></li>
+ 
+                <li class="next_article"><a href="/freebsd-console-resolution.html" title="下一篇: FreeBSD Console Resolution">FreeBSD Console Resolution</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+ 
+            <h4>发布时间</h4>
+            <time pubdate="pubdate" datetime="2015-01-15T15:08:00+08:00">Jan 15, 2015</time>
+ 
+            <h4>更新时间</h4>
+            <div class="last_updated">2015-01-15 15:08:00+08:00</div>
+            <h4>分类</h4>
+            <a class="category-link" href="/categories.html#STM32-ref">STM32</a> 
+            <h4>标签</h4>
+            <ul class="list-of-tags tags-in-article"> 
+                <li><a href="/tags.html#Keil-ref">Keil
+                    <span>1</span>
+</a></li>
+                <li><a href="/tags.html#STM32-ref">STM32
+                    <span>1</span>
+</a></li>
+            </ul>
+
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    </body>
+</html>
