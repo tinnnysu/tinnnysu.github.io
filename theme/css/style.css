@@ -3,7 +3,7 @@ body,html{
 }
 
 h1, h2, h3, h4, h5, h5 {
-    font-family: "SimSun", Baskerville, Garamond, Georgia, "DejaVu Serif", "Times New Roman", Times, serif;
+    font-family: Baskerville, Garamond, Georgia, "DejaVu Serif", "Times New Roman", Times, serif;
     font-weight: normal;
 }
     
@@ -23,7 +23,7 @@ div#footer {
     margin:15px 0px;
     border-top:1px solid rgba(0,0,0,0.2);
     padding:2px 5px 0px 5px;
-    font-size:1em;
+    font-size:0.7em;
     font-family:calibri,tahoma,arial,sans-serif;
 }
 
@@ -145,7 +145,7 @@ article p a:hover, article ol a:hover, article div.article-content ul:not(.artic
 .article-content {
     text-align:justify;
     max-width:50em;
-    font-family: "SimSun", "PT Serif", Georgia, Times, "Times New Roman", serif;
+    font-family: "PT Serif", Georgia, Times, "Times New Roman", serif;
 }
 
 .article-content p{
@@ -153,8 +153,7 @@ article p a:hover, article ol a:hover, article div.article-content ul:not(.artic
     text-transform: none;
     font-size: 1.1em;
     line-height: 1.6em;
-    text-indent:2em;
-    margin:10px 0px 10px 0px;
+    margin:20px 0px 20px 0px;
 }
 
 .article-content blockquote {
@@ -208,7 +207,7 @@ article p a:hover, article ol a:hover, article div.article-content ul:not(.artic
     padding: 5px 5px 15px 5px;
     margin: 20px 0px 20px 0px;
     border-bottom: 1px solid rgb(143, 134, 134);
-    font-size: 2em;
+    font-size: 3em;
     font-weight:normal;
 }
 
@@ -395,32 +394,4 @@ h6:hover > a.headerlink,
 dt:hover > a.headerlink {
     visibility: visible;
     text-decoration:none;
-}
-
-.section h1{
-        font-size:2em
-}
-
-.section h2{
-        font-size:1.8em
-}
-
-.section h3{
-        font-size:1.6em
-}
-
-.section h4{
-        font-size:1.4em
-}
-
-.section h5{
-	font-size:1.2em
-}
-
-.line {
-	margin:10px 0px 10px 2.2em
-}
-
-table {
-	margin:0px 0px 0px 2.2em
 }
